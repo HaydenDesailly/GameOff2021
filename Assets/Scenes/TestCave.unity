@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.233
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 917090833}
-  m_IndirectSpecularColor: {r: 0.04200612, g: 0.052591387, b: 0.07151303, a: 0.233}
+  m_IndirectSpecularColor: {r: 0.04200601, g: 0.052591197, b: 0.07151275, a: 0.233}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -214,8 +214,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!20 &1058591789 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20690878572351014, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
+  m_PrefabInstance: {fileID: 1563059005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1058591790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
+  m_PrefabInstance: {fileID: 1563059005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205865245
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,8 +238,10 @@ GameObject:
   - component: {fileID: 1205865248}
   - component: {fileID: 1205865247}
   - component: {fileID: 1205865246}
-  m_Layer: 0
-  m_Name: Capsule
+  - component: {fileID: 1205865250}
+  - component: {fileID: 1205865251}
+  m_Layer: 7
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,16 +321,57 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.17, y: 4.53, z: 51.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1058591790}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1205865250
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205865245}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!114 &1205865251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205865245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b32d0c92190fcf4f9ab4682e702ef33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxSpeed: 8
+  MaxSprintSpeed: 14
+  Acceleration: 5
+  Deceleration: 8
+  LookSensitivity: 2
+  PlayerCamera: {fileID: 1058591789}
+  Forward: 119
+  Backward: 115
+  Left: 97
+  Right: 100
+  Sprint: 304
+  Jump: 32
 --- !u!1001 &1563059005
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1205865249}
     m_Modifications:
     - target: {fileID: 1491068631969934, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_Name
@@ -330,39 +383,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.086
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.99
+      value: 0.584
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.585
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98632145
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.08109884
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.14302002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011759599
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.401
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -16.501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519450018719916, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -406,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: snapCamera
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: camSnapping
@@ -418,11 +471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.x
-      value: 700
+      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.y
-      value: 394
+      value: 396
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: affineBounds
@@ -466,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: sections.Array.data[3]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
@@ -482,7 +535,7 @@ GameObject:
   - component: {fileID: 1980523172}
   - component: {fileID: 1980523171}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!33 &303678487933298400
 MeshFilter:
@@ -611,13 +664,28 @@ GameObject:
   - component: {fileID: 1333951825921666913}
   - component: {fileID: 303678487933298400}
   - component: {fileID: 3929970483856762397}
-  m_Layer: 0
+  - component: {fileID: 2510037761053450969}
+  m_Layer: 6
   m_Name: TestCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &2510037761053450969
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510037761053450968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2021654665376015159, guid: 29e764b1f6c764d4ca33d6c37b07d9b1, type: 3}
 --- !u!23 &3929970483856762397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -673,7 +741,7 @@ Transform:
   m_Children:
   - {fileID: 1333951825921666913}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7957758976117666732
 GameObject:
@@ -684,7 +752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7288076596279978262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
