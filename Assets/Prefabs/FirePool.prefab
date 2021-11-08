@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 962598261095387187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.66343594, y: 0.01, z: -8.361438}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1980523173}
   m_Father: {fileID: 0}
@@ -150,16 +150,16 @@ Projector:
   m_GameObject: {fileID: 962598261095387187}
   m_Enabled: 1
   serializedVersion: 2
-  m_NearClipPlane: -2
-  m_FarClipPlane: 2
+  m_NearClipPlane: -4
+  m_FarClipPlane: 4
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 2
-  m_Material: {fileID: 2100000, guid: 9bbd223986f53cf4fadef8dfd2b5082d, type: 2}
+  m_OrthographicSize: 4
+  m_Material: {fileID: 0}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &921051297632276413
 MonoBehaviour:
   m_ObjectHideFlags: 0
