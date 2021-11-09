@@ -45,6 +45,7 @@ public class PlayerMovement : Singleton<PlayerMovement> {
     protected float m_groundCastDepth;
     protected float m_jumpGroundedCD = 0.2f;
     protected float m_jumpTimer = 99.0f;
+    protected Vector3 m_previousPosition;
 
     protected float m_snareTime = 0.4f;
     protected float m_snareTimer = 99.0f;
@@ -58,6 +59,7 @@ public class PlayerMovement : Singleton<PlayerMovement> {
     protected override void Awake() {
         base.Awake();
 
+        m_previousPosition = transform.position;
         m_rb = GetComponent<Rigidbody>();
         m_groundCastDepth = Vector3.Project(transform.position - GroundCastOrigin.position, transform.up).magnitude - GroundedCapsule.radius;
     }
@@ -99,6 +101,9 @@ public class PlayerMovement : Singleton<PlayerMovement> {
         else { m_velocity = Vector3.Lerp(m_velocity, Vector3.zero, Time.deltaTime * Deceleration * movementMultiplier); }
 
         m_rb.velocity = verticalVelocity + m_velocity;
+
+        PlayerWeapon.Instance.Translate(transform.position - m_previousPosition);
+        m_previousPosition = transform.position;
     }
 
     private void FixedUpdate() {
@@ -118,13 +123,17 @@ public class PlayerMovement : Singleton<PlayerMovement> {
     }
 
     protected void HandleGrounding() {
+        bool wasGrounded = m_grounded;
         float depth = m_groundCastDepth + (m_grounded ? GroundStickCastLength : 0.02f);
         m_grounded = false;
         if (m_jumpTimer >= m_jumpGroundedCD) {
             Ray ray = new Ray(GroundCastOrigin.position, Vector3.down);
             if (Physics.SphereCast(ray, GroundedCapsule.radius * 0.99f, out RaycastHit hit, depth, GroundedMask)) {
                 bool stick = true;
-                if (Vector3.Angle(Vector3.up, hit.normal) <= MaximumGroundAngle) { m_grounded = true; }
+                if (Vector3.Angle(Vector3.up, hit.normal) <= MaximumGroundAngle) {
+                    m_grounded = true;
+                    if (!wasGrounded) { PlayerWeapon.Instance.AddPositionOffset(Mathf.Abs(m_rb.velocity.y) * Vector3.down * 0.02f); }
+                }
                 else {
                     stick = hit.distance < m_groundCastDepth + 0.48f;
                     if (stick) {
