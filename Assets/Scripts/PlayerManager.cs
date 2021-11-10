@@ -12,6 +12,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        Player = FindObjectOfType<PlayerMovement>().gameObject;
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 }

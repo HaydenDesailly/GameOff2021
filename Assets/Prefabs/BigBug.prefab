@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931352375654682741}
-  - component: {fileID: 2128009121}
+  - component: {fileID: 1931352375702308825}
   m_Layer: 0
   m_Name: BigBug
   m_TagString: Untagged
@@ -128,7 +128,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2128009121
+--- !u!114 &1931352375702308825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1931352375654682743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417d4ba549b057b4eb232047c768d897, type: 3}
+  m_Script: {fileID: 11500000, guid: 68b8f18ccfdebe347b262b504e74735f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

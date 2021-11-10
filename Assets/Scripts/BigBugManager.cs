@@ -13,6 +13,9 @@ public class BigBugManager : MonoBehaviour
     [SerializeField]
     private GameObject BigBug;
 
+    [SerializeField]
+    private bool DoTheThing;
+
     private int EnvironmentLayerId = 6;
 
     float timer = 11f;
@@ -21,80 +24,84 @@ public class BigBugManager : MonoBehaviour
 
     private void Awake()
     {
-        //assembling point nodes based on mesh vertices (and storing normals for rotation of pathing entities)
-        var environmentObjects = FindGameObjectsInLayer(EnvironmentLayerId);
-        foreach (var environmentObject in environmentObjects)
+        if (DoTheThing)
         {
-            Matrix4x4 localToWorld = environmentObject.transform.localToWorldMatrix;
-
-            var meshfilter = environmentObject.GetComponent<MeshFilter>();
-            if (meshfilter != null)
+            //assembling point nodes based on mesh vertices (and storing normals for rotation of pathing entities)
+            var environmentObjects = FindGameObjectsInLayer(EnvironmentLayerId);
+            foreach (var environmentObject in environmentObjects)
             {
-                for (int i = 0; i < meshfilter.mesh.vertices.Length; ++i)
-                {
-                    var vertex = localToWorld.MultiplyPoint3x4(meshfilter.mesh.vertices[i]);
-                    var normal = localToWorld.MultiplyPoint3x4(meshfilter.mesh.normals[i]);
+                Matrix4x4 localToWorld = environmentObject.transform.localToWorldMatrix;
 
-                    Nodes.Add(new Node {
-                        mesh = meshfilter.mesh,
-                        vertexId = i,
-                        Point = vertex,
-                        Normal = normal
-                    });
+                var meshfilter = environmentObject.GetComponent<MeshFilter>();
+                if (meshfilter != null)
+                {
+                    for (int i = 0; i < meshfilter.mesh.vertices.Length; ++i)
+                    {
+                        var vertex = localToWorld.MultiplyPoint3x4(meshfilter.mesh.vertices[i]);
+                        var normal = localToWorld.MultiplyPoint3x4(meshfilter.mesh.normals[i]);
+
+                        Nodes.Add(new Node
+                        {
+                            mesh = meshfilter.mesh,
+                            vertexId = i,
+                            Point = vertex,
+                            Normal = normal
+                        });
+                    }
                 }
             }
-        }
 
-        //linking nodes to each other based on mesh triangles
-        foreach (var node in Nodes)
-        {
-            var triangles = node.mesh.triangles;
-            if (triangles.Length > 1)
+            //linking nodes to each other based on mesh triangles
+            foreach (var node in Nodes)
             {
-                for (int i = 0; i < triangles.Length; i++)
+                var triangles = node.mesh.triangles;
+                if (triangles.Length > 1)
                 {
-                    if (triangles[i] == node.vertexId)
+                    for (int i = 0; i < triangles.Length; i++)
                     {
-                        var position = i % 3;
-                        if (position == 0)
+                        if (triangles[i] == node.vertexId)
                         {
-                            var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 1]);
-                            node.Children.Add(destinationNodeA);
-                            destinationNodeA.Children.Add(node);
+                            var position = i % 3;
+                            if (position == 0)
+                            {
+                                var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 1]);
+                                node.Children.Add(destinationNodeA);
+                                destinationNodeA.Children.Add(node);
 
-                            var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 2]);
-                            node.Children.Add(destinationNodeB);
-                            destinationNodeB.Children.Add(node);
-                        }
-                        else if (position == 1)
-                        {
-                            var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 1]);
-                            node.Children.Add(destinationNodeA);
-                            destinationNodeA.Children.Add(node);
+                                var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 2]);
+                                node.Children.Add(destinationNodeB);
+                                destinationNodeB.Children.Add(node);
+                            }
+                            else if (position == 1)
+                            {
+                                var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 1]);
+                                node.Children.Add(destinationNodeA);
+                                destinationNodeA.Children.Add(node);
 
-                            var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 1]);
-                            node.Children.Add(destinationNodeB);
-                            destinationNodeB.Children.Add(node);
-                        }
-                        else if (position == 2)
-                        {
-                            var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 1]);
-                            node.Children.Add(destinationNodeA);
-                            destinationNodeA.Children.Add(node);
+                                var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i + 1]);
+                                node.Children.Add(destinationNodeB);
+                                destinationNodeB.Children.Add(node);
+                            }
+                            else if (position == 2)
+                            {
+                                var destinationNodeA = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 1]);
+                                node.Children.Add(destinationNodeA);
+                                destinationNodeA.Children.Add(node);
 
-                            var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 2]);
-                            node.Children.Add(destinationNodeB);
-                            destinationNodeB.Children.Add(node);
+                                var destinationNodeB = Nodes.FirstOrDefault(n => n.vertexId == triangles[i - 2]);
+                                node.Children.Add(destinationNodeB);
+                                destinationNodeB.Children.Add(node);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        //foreach (var node in Nodes)
-        //{
-        //    Instantiate(BigBug, node.Point, Quaternion.FromToRotation(node.Point, node.Normal), null);
-        //}
+            //foreach (var node in Nodes)
+            //{
+            //    Instantiate(BigBug, node.Point, Quaternion.FromToRotation(node.Point, node.Normal), null);
+            //}
+        }
     }
 
     //private void Update()
