@@ -2,14 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BigBugManager : MonoBehaviour
+public class BigBugManager : Singleton<BigBugManager>
 {
-    public static BigBugManager Instance
-    {
-        get { return _instance ??= FindObjectOfType<BigBugManager>() ?? new BigBugManager { }; }
-    }
-    private static BigBugManager _instance;
-
     [SerializeField]
     private GameObject _bigBug;
 
@@ -29,7 +23,7 @@ public class BigBugManager : MonoBehaviour
     {
         _timer = _bugSpawnPeriod;
 
-        if (_spawnBugs)
+        if (_spawnBugs && Nodes.Count == 0)
         {
             //assembling point nodes based on mesh vertices (and storing normals for rotation of pathing entities)
             var environmentObjects = FindGameObjectsInLayer(_environmentLayerId);

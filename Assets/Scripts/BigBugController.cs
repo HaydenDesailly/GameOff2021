@@ -3,9 +3,20 @@ using UnityEngine;
 public class BigBugController : MonoBehaviour
 {
     [SerializeField]
-    private float _speed;
+    private float _speed = 10f;
 
     BigBugManager.Node targetNode = null;
+
+    [HideInInspector]
+    public bool Dead;
+
+    [SerializeField]
+    private Material _deadMaterial;
+
+    [SerializeField]
+    private float _lifeSpan = 30f;
+
+    private float _life;
 
     private void Start()
     {
@@ -20,42 +31,59 @@ public class BigBugController : MonoBehaviour
 
     private void Update()
     {
-        var playerPosition = PlayerManager.Instance.Player.transform.position;
-
-        if (targetNode != null)
+        _life += Time.deltaTime;
+        if (_life > _lifeSpan)
         {
-            if (Vector3.Distance(transform.position, targetNode.Point) > 0.1f)
-            {
-                //keep heading towards targetNode
-                transform.position += (targetNode.Point - transform.position).normalized * Time.deltaTime * _speed;
-            }
-            else
-            {
-                //find next targetNode in player direction
-                var nextNode = targetNode;
-                foreach (var node in targetNode.Children)
-                {
-                    if (Vector3.Distance(node.Point, playerPosition) < Vector3.Distance(transform.position, playerPosition))
-                    {
-                        nextNode = node;
-                        break;
-                    }
-                }
+            Dead = true;
+            Destroy(gameObject);
+        }
 
-                targetNode = nextNode;
-                transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+        if (!Dead)
+        {
+            var playerPosition = PlayerManager.Instance.Player.transform.position;
+
+            if (targetNode != null)
+            {
+                if (Vector3.Distance(transform.position, targetNode.Point) > 0.1f)
+                {
+                    //keep heading towards targetNode
+                    transform.position += (targetNode.Point - transform.position).normalized * Time.deltaTime * _speed;
+                }
+                else
+                {
+                    //find next targetNode in player direction
+                    var nextNode = targetNode;
+                    foreach (var node in targetNode.Children)
+                    {
+                        if (Vector3.Distance(node.Point, playerPosition) < Vector3.Distance(transform.position, playerPosition))
+                        {
+                            nextNode = node;
+                            break;
+                        }
+                    }
+
+                    targetNode = nextNode;
+                    transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+                }
             }
         }
     }
 
-    private void FixedUpdate()
+    public void Kill()
     {
-        if (targetNode != null)
+        if (!Dead)
         {
-            foreach (var child in targetNode.Children)
-            {
-                Debug.DrawLine(transform.position, child.Point, Color.red, 0.025f);
-            }
+            Dead = true;
+
+            //todo 
+            // catch fire
+            // shrivle up
+            // die
+
+            //simulating 1.5 second death animation
+            var meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer.material = _deadMaterial;
+            Destroy(gameObject, 1.5f);
         }
     }
 }
