@@ -9,10 +9,13 @@ public class BigBugController : MonoBehaviour
 
     private void Start()
     {
-        var spawnLocation = Random.Range(0, BigBugManager.Instance.Nodes.Count);
-        targetNode = BigBugManager.Instance.Nodes[spawnLocation];
-        transform.position = targetNode.Point;
-        transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+        if (BigBugManager.Instance.Nodes.Count > 0)
+        {
+            var spawnLocation = Random.Range(0, BigBugManager.Instance.Nodes.Count);
+            targetNode = BigBugManager.Instance.Nodes[spawnLocation];
+            transform.position = targetNode.Point;
+            transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+        }
     }
 
     private void Update()

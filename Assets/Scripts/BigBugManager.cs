@@ -14,7 +14,7 @@ public class BigBugManager : MonoBehaviour
     private GameObject _bigBug;
 
     [SerializeField]
-    private bool _doTheThing;
+    private bool _spawnBugs;
 
     private int _environmentLayerId = 6;
 
@@ -29,7 +29,7 @@ public class BigBugManager : MonoBehaviour
     {
         _timer = _bugSpawnPeriod;
 
-        if (_doTheThing)
+        if (_spawnBugs)
         {
             //assembling point nodes based on mesh vertices (and storing normals for rotation of pathing entities)
             var environmentObjects = FindGameObjectsInLayer(_environmentLayerId);
@@ -134,20 +134,16 @@ public class BigBugManager : MonoBehaviour
 
     private void Update()
     {
-        _timer -= Time.deltaTime;
-
-        if (_timer < 0f)
+        if (_spawnBugs)
         {
-            _timer = _bugSpawnPeriod;
-            foreach (var node in Nodes)
-            {
-                foreach (var child in node.Children)
-                {
-                    Debug.DrawLine(node.Point, child.Point, Color.red, 10f);
-                }
-            }
+            _timer -= Time.deltaTime;
 
-            Instantiate(_bigBug, Vector3.zero, Quaternion.identity, null);
+            if (_timer < 0f)
+            {
+                _timer = _bugSpawnPeriod;
+
+                Instantiate(_bigBug, Vector3.zero, Quaternion.identity, null);
+            }
         }
     }
 
