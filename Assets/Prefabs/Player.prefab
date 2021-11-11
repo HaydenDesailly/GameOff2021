@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 490720589}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,9 +336,9 @@ MonoBehaviour:
   FirePort: {fileID: 0}
   Projectile: {fileID: 1885681935106976831, guid: 46b76b9e55898ab4aa714f62cb8f3f12, type: 3}
   TriggerDelay: 0.08
-  ChargeTime: 0.2
+  ChargeTime: 0.4
   MinVelocity: 4
-  MaxVelocity: 22
+  MaxVelocity: 40
   FireRate: 0.08
 --- !u!114 &2033840226
 MonoBehaviour:
@@ -534,11 +534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.x
-      value: 704
+      value: 721
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.y
-      value: 396
+      value: 418
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: affineBounds

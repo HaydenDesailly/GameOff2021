@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bd44472ca4c7846958d1996ec23de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BigBug: {fileID: 1931352375654682743, guid: 3998e0e248a53c74a91a8063892efba9, type: 3}
-  DoTheThing: 0
+  _bigBug: {fileID: 1931352375654682743, guid: 3998e0e248a53c74a91a8063892efba9, type: 3}
+  _doTheThing: 1
+  _bugSpawnPeriod: 3
 --- !u!114 &24300054
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,18 @@
-using System.Linq;
 using UnityEngine;
 
 public class BigBugController : MonoBehaviour
 {
+    [SerializeField]
+    private float _speed;
+
     BigBugManager.Node targetNode = null;
 
     private void Start()
     {
-        targetNode = BigBugManager.Instance.Nodes.Where(n => Vector3.Distance(n.Point, PlayerManager.Instance.Player.transform.position) < 10f).FirstOrDefault();
+        var spawnLocation = Random.Range(0, BigBugManager.Instance.Nodes.Count);
+        targetNode = BigBugManager.Instance.Nodes[spawnLocation];
+        transform.position = targetNode.Point;
+        transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
     }
 
     private void Update()
@@ -19,7 +24,7 @@ public class BigBugController : MonoBehaviour
             if (Vector3.Distance(transform.position, targetNode.Point) > 0.1f)
             {
                 //keep heading towards targetNode
-                transform.position += (targetNode.Point - transform.position).normalized * Time.deltaTime * 5f;
+                transform.position += (targetNode.Point - transform.position).normalized * Time.deltaTime * _speed;
             }
             else
             {

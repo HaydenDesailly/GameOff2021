@@ -11,23 +11,28 @@ public class BigBugManager : MonoBehaviour
     private static BigBugManager _instance;
 
     [SerializeField]
-    private GameObject BigBug;
+    private GameObject _bigBug;
 
     [SerializeField]
-    private bool DoTheThing;
+    private bool _doTheThing;
 
-    private int EnvironmentLayerId = 6;
+    private int _environmentLayerId = 6;
 
-    float timer = 11f;
+    [SerializeField]
+    private float _bugSpawnPeriod = 10f;
+
+    private float _timer;
 
     public List<Node> Nodes { get; private set; } = new List<Node>();
 
     private void Awake()
     {
-        if (DoTheThing)
+        _timer = _bugSpawnPeriod;
+
+        if (_doTheThing)
         {
             //assembling point nodes based on mesh vertices (and storing normals for rotation of pathing entities)
-            var environmentObjects = FindGameObjectsInLayer(EnvironmentLayerId);
+            var environmentObjects = FindGameObjectsInLayer(_environmentLayerId);
             foreach (var environmentObject in environmentObjects)
             {
                 Matrix4x4 localToWorld = environmentObject.transform.localToWorldMatrix;
@@ -97,29 +102,54 @@ public class BigBugManager : MonoBehaviour
                 }
             }
 
-            //foreach (var node in Nodes)
-            //{
-            //    Instantiate(BigBug, node.Point, Quaternion.FromToRotation(node.Point, node.Normal), null);
-            //}
+            //merge close nodes together (will orphan the other close nodes, which will then be dumped)
+            foreach (var node in Nodes)
+            {
+                foreach (var node2 in Nodes)
+                {
+                    if (node != node2 && Vector3.Distance(node.Point, node2.Point) < 0.1f)
+                    {
+                        //merge
+                        if (node2.Children.Count() > 0)
+                        {
+                            node.Children.AddRange(node2.Children);
+
+                            //swap children's links
+                            foreach (var child in node2.Children)
+                            {
+                                child.Children = child.Children.Where(c => c != node2).ToList();
+                                child.Children.Add(node);
+                            }
+
+                            node2.Children.Clear();
+                        }
+                    }
+                }
+            }
+
+            //dump any vertices which dont have any edges to link to
+            Nodes = Nodes.Where(n => n.Children.Count > 0).ToList();
         }
     }
 
-    //private void Update()
-    //{
-    //    timer += Time.deltaTime;
+    private void Update()
+    {
+        _timer -= Time.deltaTime;
 
-    //    if (timer > 10f)
-    //    {
-    //        timer = 0f;
-    //        foreach (var node in Nodes)
-    //        {
-    //            foreach (var child in node.Children)
-    //            {
-    //                Debug.DrawLine(node.Point, child.Point, Color.red, 10f);
-    //            }
-    //        }
-    //    }
-    //}
+        if (_timer < 0f)
+        {
+            _timer = _bugSpawnPeriod;
+            foreach (var node in Nodes)
+            {
+                foreach (var child in node.Children)
+                {
+                    Debug.DrawLine(node.Point, child.Point, Color.red, 10f);
+                }
+            }
+
+            Instantiate(_bigBug, Vector3.zero, Quaternion.identity, null);
+        }
+    }
 
     private List<GameObject> FindGameObjectsInLayer(int layer)
     {
