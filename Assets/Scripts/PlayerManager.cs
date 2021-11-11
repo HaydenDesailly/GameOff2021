@@ -4,8 +4,10 @@ public class PlayerManager : Singleton<PlayerManager>
 {
     public GameObject Player { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 }

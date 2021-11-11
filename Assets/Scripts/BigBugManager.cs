@@ -19,8 +19,10 @@ public class BigBugManager : Singleton<BigBugManager>
 
     public List<Node> Nodes { get; private set; } = new List<Node>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _timer = _bugSpawnPeriod;
 
         if (_spawnBugs && Nodes.Count == 0)
