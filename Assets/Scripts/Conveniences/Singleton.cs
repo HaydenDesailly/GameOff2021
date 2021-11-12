@@ -19,3 +19,13 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
     }
 }
+
+public class ResourceSingleton<T> : ScriptableObject where T : ResourceSingleton<T> {
+    static T s_instance;
+    public static T Instance {
+        get {
+            if (!s_instance) { s_instance = Resources.Load<T>(typeof(T).ToString()); }
+            return s_instance;
+        }
+    }
+}
