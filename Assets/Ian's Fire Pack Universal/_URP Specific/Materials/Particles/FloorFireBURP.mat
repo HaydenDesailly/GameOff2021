@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FloorFireBURP
+  m_Shader: {fileID: -6465566751694194690, guid: eba4de16748d44c1db6e9a2471bdde58,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_6FC727E8:
+        m_Texture: {fileID: 2800000, guid: f8b88f2f8fc3f48478dcc8efef9d132c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f8b88f2f8fc3f48478dcc8efef9d132c, type: 3}
+        m_Scale: {x: 0.125, y: 0.25}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_3BA0AFB2: 8
+    - Vector1_7E4BFB15: 25
+    - Vector1_810FA8CD: 1
+    - Vector1_E8995F7A: 4
+    - _InvFade: 3
+    - _RimPower: 2.05
+    m_Colors:
+    - Color_34CB0679: {r: 1, g: 1, b: 1, a: 0}
+    - _TintColor: {r: 1, g: 0.87829614, b: 0.5588235, a: 1}

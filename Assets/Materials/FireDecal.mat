@@ -123,7 +123,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AffectorCount: 5
-    - _BackgroundAmount: 0.575
+    - _BackgroundAmount: 1
     - _BackgroundNoiseAmount: 0.111
     - _BackgroundSpeed: 0.2
     - _BaseAmount: 6.33
@@ -161,11 +161,11 @@ Material:
     - _Noise02Enabled: 0
     - _Noise02ScrollSpeed: -0.3
     - _Noise02Tiling: 0.01
-    - _Noise1Speed: 0.1
+    - _Noise1Speed: 0.5
     - _Noise1Speed1: 1
-    - _Noise1Tiling: 0.2
+    - _Noise1Tiling: 0.1
     - _Noise1Tiling1: 8
-    - _Noise2Speed: 0.35
+    - _Noise2Speed: 0.4
     - _Noise2Tiling: 2
     - _NoiseDistortionPower: 6.65
     - _NoiseMaskDistortionEnabled: 1
@@ -201,7 +201,7 @@ Material:
     - _TipAmount: 1
     - __dirty: 0
     m_Colors:
-    - _BackgroundColour: {r: 0.015717387, g: 0.04575504, b: 0.241, a: 1}
+    - _BackgroundColour: {r: 0.093049124, g: 0.14751689, b: 0.4811321, a: 1}
     - _BackgroundTiling: {r: 2, g: 2, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 1, g: 0.52, b: 0, a: 0}
