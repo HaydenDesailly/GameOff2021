@@ -125,8 +125,8 @@ Material:
     - _AffectorCount: 5
     - _BackgroundAmount: 1
     - _BackgroundNoiseAmount: 0.111
-    - _BackgroundSpeed: 0.2
-    - _BaseAmount: 6.33
+    - _BackgroundSpeed: 1
+    - _BaseAmount: 10
     - _CausticsScale: 4.85
     - _Cutoff: 0.5
     - _Distance: 1
