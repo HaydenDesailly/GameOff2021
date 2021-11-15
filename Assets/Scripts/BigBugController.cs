@@ -16,9 +16,12 @@ public class BigBugController : MonoBehaviour
     [SerializeField]
     private float _lifeSpan = 30f;
 
+    [SerializeField]
+    private GameObject[] _legs;
+
     private float _life;
 
-    private void Start()
+    private void Awake()
     {
         if (BigBugManager.Instance.Nodes.Count > 0)
         {
@@ -26,6 +29,15 @@ public class BigBugController : MonoBehaviour
             targetNode = BigBugManager.Instance.Nodes[spawnLocation];
             transform.position = targetNode.Point;
             transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+        }
+    }
+
+    private void Start()
+    {
+        //start animation sequence coroutine?
+        if (_legs == null || _legs.Length == 0)
+        {
+            Debug.LogWarning("Connect all the legs to the big bug animation sequencer!");
         }
     }
 
