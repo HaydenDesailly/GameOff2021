@@ -27,7 +27,8 @@ public class BigBugController : MonoBehaviour
         {
             var spawnLocation = Random.Range(0, BigBugManager.Instance.Nodes.Count);
             targetNode = BigBugManager.Instance.Nodes[spawnLocation];
-            transform.position = targetNode.Point;
+            transform.position = targetNode.Point - targetNode.Normal;
+            transform.rotation = Quaternion.LookRotation(targetNode.Point - transform.position, targetNode.Normal);
         }
     }
 
