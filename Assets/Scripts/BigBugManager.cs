@@ -21,8 +21,6 @@ public class BigBugManager : Singleton<BigBugManager>
 
     protected override void Awake()
     {
-        base.Awake();
-
         _timer = _bugSpawnPeriod;
 
         if (_spawnBugs && Nodes.Count == 0)

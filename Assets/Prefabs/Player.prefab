@@ -534,11 +534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.x
-      value: 823
+      value: 221
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: customRes.y
-      value: 502
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 114158257989079230, guid: 3d5d1ed9e2204494b8f6ffe02e4c8e97, type: 3}
       propertyPath: affineBounds

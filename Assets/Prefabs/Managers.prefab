@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6047448428678950618}
   - component: {fileID: 6047448428678950619}
   - component: {fileID: 24300054}
+  - component: {fileID: 6047448428690400463}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bigBug: {fileID: 2895458365258564985, guid: 0b61db4c97537334c9d8a12a14388d00, type: 3}
   _spawnBugs: 1
-  _bugSpawnPeriod: 3
+  _bugSpawnPeriod: 0.2
 --- !u!114 &24300054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,3 +60,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddfa1545ddb8824d9e86e28b8a9338d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6047448428690400463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047448428678950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34af84c2b3dc7194abb53700f52bb9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nodes:
+  - {fileID: 0}
+  - {fileID: 0}

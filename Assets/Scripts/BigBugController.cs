@@ -17,7 +17,7 @@ public class BigBugController : MonoBehaviour
     private float _lifeSpan = 30f;
 
     [SerializeField]
-    private GameObject[] _legs;
+    private BigBugLegController[] _legs;
 
     private float _life;
 
@@ -39,6 +39,10 @@ public class BigBugController : MonoBehaviour
         {
             Debug.LogWarning("Connect all the legs to the big bug animation sequencer!");
         }
+        else
+        {
+            _legs[0].Animator.SetTrigger("move");
+        }
     }
 
     private void Update()
@@ -52,8 +56,8 @@ public class BigBugController : MonoBehaviour
 
         if (!Dead)
         {
+            //attempt to kill player
             var playerPosition = PlayerManager.Instance.Player.transform.position;
-
             if (targetNode != null)
             {
                 if (Vector3.Distance(transform.position, targetNode.Point) > 0.1f)
@@ -78,6 +82,23 @@ public class BigBugController : MonoBehaviour
                     transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
                 }
             }
+
+            //do leg animation sequencing
+            bool triggerHit = false;
+            int i;
+            for (i = 0; i < _legs.Length; i++)
+            {
+                if (_legs[i].TriggerHit)
+                {
+                    triggerHit = true;
+                    break;
+                }
+            }
+            if (triggerHit)
+            {
+                _legs[i].TriggerHit = false;
+                _legs[(i + 1) % _legs.Length].Animator.SetTrigger("move");
+            }
         }
     }
 
@@ -87,15 +108,15 @@ public class BigBugController : MonoBehaviour
         {
             Dead = true;
 
-            //todo 
-            // catch fire
-            // shrivle up
-            // die
+            foreach (var leg in _legs)
+            {
+                leg.Animator.SetBool("dead", true);
+            }
 
             //simulating 1.5 second death animation
             var meshRenderer = GetComponent<MeshRenderer>();
             meshRenderer.material = _deadMaterial;
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 3f);
         }
     }
 }
