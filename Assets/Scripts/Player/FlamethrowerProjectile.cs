@@ -7,6 +7,7 @@ public class FlamethrowerProjectile : MonoBehaviour
     public float GravityTransitionTime = 0.8f;
     [Range(0.0f, 1.0f)] public float Drag = 0.05f;
     public float LifeTime = 2.0f;
+    public LayerMask HitMask;
 
     protected float CurrentGravity => Mathf.Lerp(StartingGravity, EndingGravity, m_lifeTimer / GravityTransitionTime);
 
@@ -29,6 +30,7 @@ public class FlamethrowerProjectile : MonoBehaviour
     }
 
     public void LateUpdate() {
+        Vector3 previousPosition = transform.position;
         transform.position += m_velocity * Time.deltaTime;
         m_velocity += Vector3.down * CurrentGravity * Time.deltaTime;
         m_velocity *= 1.0f - Drag;
@@ -37,6 +39,13 @@ public class FlamethrowerProjectile : MonoBehaviour
             var main = Emission.main;
             Vector2 emissionSize = Vector2.Lerp(EmissionSizeMin, EmissionSizeMax, EmissionT);
             main.startSize = new ParticleSystem.MinMaxCurve(emissionSize.x, emissionSize.y);
+        }
+
+        Vector3 castDif = transform.position - previousPosition;
+        if (Physics.Raycast(new Ray(previousPosition, castDif), out RaycastHit hit, castDif.magnitude, HitMask)) {
+            FireManager.Instance.AttemptFirePlacement(hit);
+            Destroy(gameObject);
+            return;
         }
 
         m_lifeTimer += Time.deltaTime;

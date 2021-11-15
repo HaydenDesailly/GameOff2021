@@ -17,10 +17,12 @@ MonoBehaviour:
   NodeHeight: 0.5
   MaxConnectionDistance: 5
   FootCheckSteps: 4
-  FootCheckDepth: 1
+  FootCheckDepth: 1.2
   EnvironmentMask:
     serializedVersion: 2
     m_Bits: 64
+  DrawDistance: 50
+  SelectionDistance: 5
   NodeDrawSize: 0.2
   NodeColour: {r: 0, g: 0.13879704, b: 1, a: 0.84313726}
   ConnectionColour: {r: 1, g: 0, b: 0.019191265, a: 1}
