@@ -83,7 +83,7 @@ public class BigBugController : MonoBehaviour
                 }
             }
 
-            //do leg animation sequencing
+            //leg animation sequencing
             bool triggerHit = false;
             int i;
             for (i = 0; i < _legs.Length; i++)

@@ -144,12 +144,12 @@ MonoBehaviour:
   _lifeSpan: 30
   _legs:
   - {fileID: 1770540018}
-  - {fileID: 1309565605}
-  - {fileID: 1480105128}
-  - {fileID: 257146008}
   - {fileID: 1298222922}
+  - {fileID: 1309565605}
   - {fileID: 912703218}
+  - {fileID: 1480105128}
   - {fileID: 915761214}
+  - {fileID: 257146008}
   - {fileID: 1636917740}
 --- !u!114 &1309565605
 MonoBehaviour:
