@@ -39,7 +39,7 @@ public class BigBugManager : Singleton<BigBugManager>
             {
                 _timer = _bugSpawnPeriod;
 
-                Instantiate(_bigBug, Vector3.zero, Quaternion.identity, null);
+                Instantiate(_bigBug, null);
             }
         }
     }
