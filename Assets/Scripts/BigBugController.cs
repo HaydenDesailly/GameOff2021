@@ -28,19 +28,18 @@ public class BigBugController : MonoBehaviour
             var spawnLocation = Random.Range(0, BigBugManager.Instance.Nodes.Count);
             targetNode = BigBugManager.Instance.Nodes[spawnLocation];
             transform.position = targetNode.Point;
-            transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
         }
     }
 
     private void Start()
     {
-        //start animation sequence coroutine?
         if (_legs == null || _legs.Length == 0)
         {
             Debug.LogWarning("Connect all the legs to the big bug animation sequencer!");
         }
         else
         {
+            //kick off the leg animation sequencing by starting the 1st leg in the array
             _legs[0].Animator.SetTrigger("move");
         }
     }
@@ -79,8 +78,11 @@ public class BigBugController : MonoBehaviour
                     }
 
                     targetNode = nextNode;
-                    transform.rotation = Quaternion.FromToRotation(targetNode.Point, targetNode.Normal);
+                    
                 }
+
+                //turn towards next nav node
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetNode.Point - transform.position, targetNode.Normal), 270f * Time.deltaTime);
             }
 
             //leg animation sequencing
