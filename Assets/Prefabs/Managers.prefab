@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6047448428678950619}
   - component: {fileID: 24300054}
   - component: {fileID: 6047448428690400463}
+  - component: {fileID: 1397872491}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bigBug: {fileID: 2770866739825874591, guid: 057b03bf47f75eb4581d64e08fc68041, type: 3}
-  _spawnBugs: 1
+  _spawnBugs: 0
   _bugSpawnPeriod: 0.5
 --- !u!114 &24300054
 MonoBehaviour:
@@ -72,6 +73,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34af84c2b3dc7194abb53700f52bb9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nodes:
-  - {fileID: 0}
-  - {fileID: 0}
+  Nodes: []
+--- !u!114 &1397872491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047448428678950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a40a94609c89e145b52bfe69f582a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePrefab: {fileID: 1645530958960610983, guid: f3a0104a73bc62246b4b25de7b9656f2, type: 3}
+  PlacementMask:
+    serializedVersion: 2
+    m_Bits: 64
+  FirePlacementRefinements: 3
+  FireRadius: 2.5
+  MinimumDistanceAway: 1
+  Overlap: 1.8
+  MaximumRefinementDistance: 3

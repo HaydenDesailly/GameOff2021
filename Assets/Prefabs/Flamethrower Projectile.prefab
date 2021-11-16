@@ -4864,6 +4864,9 @@ MonoBehaviour:
   GravityTransitionTime: 0.8
   Drag: 0.035
   LifeTime: 2
+  HitMask:
+    serializedVersion: 2
+    m_Bits: 64
   Emission: {fileID: 6654263601468890604}
   EmissionSizeMin: {x: 0.02, y: 0.06}
   EmissionSizeMax: {x: 0.6, y: 1.8}
